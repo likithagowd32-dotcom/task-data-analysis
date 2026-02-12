@@ -1,0 +1,34 @@
+import pandas as pd
+
+# Load dataset
+df = pd.read_csv("data.csv")
+
+print("First 5 rows:")
+print(df.head())
+
+print("\nDataset Info:")
+print(df.info())
+
+print("\nStatistical Summary:")
+print(df.describe())
+
+# Remove missing values
+df = df.dropna()
+
+# Filter employees with salary > 30000
+filtered = df[df['Salary'] > 30000]
+print("\nFiltered Data:")
+print(filtered)
+
+# Group by department and find average salary
+grouped = df.groupby('Department')['Salary'].mean()
+print("\nAverage Salary by Department:")
+print(grouped)
+
+# Add Bonus column (10%)
+df['Bonus'] = df['Salary'] * 0.10
+
+# Save cleaned dataset
+df.to_csv("cleaned_data.csv", index=False)
+
+print("\nTask Completed Successfully!")
